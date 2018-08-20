@@ -1,14 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<title>Trivia Game</title>
 </head>
+
 <body>
-	<!-- JQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript" src="./assets/javascript/app.js"></script>
+	<div id="leftSide">
+	<img id="mainImage" src="./assets/images/pondering.jpg" alt="character pondering ?">
+	<div id="timer"></div>
+	</div>
+	
+
+	<h1>Expect The Unexpected Trivia!</h1>
+	<div id="displayBlock">
+			<div id="displayQuestion"></div>
+			<div id="displayAnswer">
+				<button id="answerA">A</button>
+				<button id="answerB">B</button>
+				<button id="answerC">C</button>
+			</div>
+			<div id="result"></div>
+		</div>
+		<!-- JQuery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
+
 </html>
