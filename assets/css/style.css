@@ -1,36 +1,39 @@
 #leftSide {
 	display: flex;
-	float: left;
 	flex-wrap: wrap;
+	float: left;
 	justify-content: center;
 }
 #mainImage {
 	float: left;
-	width: 75%;
 	height: 75%;
+	width: 75%;
 }
 
 #timer {
-	clear: left;
 	background-color: yellowgreen;
 	border: 5px solid blue;
-	height: 105px;
+	box-sizing: border-box;
+	clear: left;
 	color: blue;
-	font-size: 24px;
+	font-size: 48px;
+	height: 105px;
+	margin-top: 60px;
+	padding-top: 20px;
 	text-align: center;
 	width: 300px;
-margin-top: 60px;
 }
 
 h1 {
-	text-align: center;
 	font-size: 58px;
+	text-align: center;
 }
+
 
 #displayBlock {
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
+	justify-content: center;
 	}
 
 #displayQuestion {
@@ -39,41 +42,41 @@ h1 {
 	box-sizing: border-box;
 	color: white;
 	font-size: 24px;
-	text-align: center;
 	height: 150px;
-	padding: 30px;
-	width: 700px;
 	margin: 20px;
+	padding: 30px;
+	text-align: center;
+	width: 700px;
 	}
 
 #displayAnswer {
 	background-color: gray;
 	border: 5px solid blue;
-	height: 150px;
 	color: white;
 	font-size: 24px;
+	height: 150px;
+	margin: 20px;
 	text-align: center;
 	width: 700px;
-	margin: 20px;
 }
 
 button {
-	border: 5px solid blue;
-	height: 125px;
-	width: 125px;
 	background-color: #fff;
+	border: 5px solid blue;
 	color: blue;
-	margin: 10px;
 	font-size: 24px;
+	height: 125px;
+	margin: 10px;
+	width: 125px;
 }
 
 #result {
 	background-color:yellowgreen;
 	border: 5px solid blue;
-	height: 100px;
 	color: white;
 	font-size: 24px;
+	height: 100px;
+	margin: 20px;
 	text-align: center;
 	width: 700px;
-	margin: 20px;
 }
