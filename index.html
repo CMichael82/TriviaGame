@@ -5,26 +5,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	 crossorigin="anonymous">
 	<link rel="stylesheet" href="./assets/css/style.css">
 	<title>Trivia Game</title>
 </head>
 
-<body>
-	<div id="leftSide">
-		<img id="mainImage">
-		<div id="result"></div>
-		<div id="timer"></div>
+<div class="header">
+<h1 id="title"><strong>BUT IT'S SO OBVIOUS...</strong></h1>
+</div>
+
+<div class="main">
+	<div id="displayBlock" class="container">
+		<div class="row">
+			<div id="leftSide" class="col-md-5">
+				<img id="mainImage" src="./assets/images/pondering.jpg" alt="Various Images">
+				<div id="timer"></div>
+			</div>
+
+			<div class="col-md-7">
+				<div id="displayQuestion"></div>
+				<div id="finalScore"></div>
+				<div id="displayOptions"></div>
+				<div id="result"></div>
+				<button id="startGame">Start Game</button>
+			</div>
+		</div>
 	</div>
-	
-	
-	<div id="displayBlock">
-		<h1 id="title">But It's So Obvious...</h1>
-		<div id="displayQuestion"></div>
-		<div id="displayOptions"></div>
-		<div id="finalScore"></div>
-		<button id="startGame">Start Game</button>
-	</div>
+</div>
+
 	<!-- JQuery -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script type="text/javascript" src="./assets/javascript/app.js"></script>

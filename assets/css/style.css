@@ -1,87 +1,89 @@
 body{
-	background-color: rgb(151, 164, 178);
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	background-image: url(../images/questionMark.jpg);
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif,
 }
 
-#leftSide {
-	display: flex;
-	flex-wrap: wrap;
-	float: left;
-	justify-content: center;
-	height: 500px;
-	width: 500px;
+/* header*/
+#title {
+	background-color: white;
+	border-bottom: 10px solid #a3cf1d;
+	border-top: 10px solid #a3cf1d;
+	color:#1589b0;
+	font-size: 64px;
+	margin-top: 20px;
+	padding: 15px;
+	text-align: center;
 }
+
+/*Game Content Container*/
+#displayBlock {
+	background-color: #1589b0;
+	border: 5px solid #a3cf1d;
+	box-sizing: border-box;
+	height: 550px;
+	justify-items: center;
+	text-align: center;
+	margin: 50px auto;
+}
+
+/*various jpg images (left-side)*/
 #mainImage {
-	float: left;
+	margin: 75px auto 50px auto;
 	height: auto;
 }
 
+/*timer box (left-side)*/
 #timer {
-	background-color: yellowgreen;
-	border: 5px solid blue;
+	background-color:#a3cf1d;
+	border: 5px solid white;
 	box-sizing: border-box;
-	clear: left;
-	color: blue;
-	font-size: 48px;
-	height: 105px;
-	margin-top: 60px;
-	padding-top: 20px;
+	color: #1589b0;
+	font-size: 36px;
+	height: 75px;
+	margin-left: 75px;
+	padding-bottom:10px;
 	text-align: center;
 	width: 300px;
 }
 
-#title {
-	font-size: 58px;
-	text-align: center;
-	color: blue;
+/*Correct or Incorrect Answer Field (right-side)*/
+#result {
+	color: white;
+	font-size: 28px;
+	margin-top: 75px;
 }
 
-
-#displayBlock {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	background-color:yellowgreen;
-	border: 5px solid blue;
-	box-sizing: border-box;
-	text-align: center;
-	height: 600px;
-	margin-top: 50px;
-	width: 850px;
+/*Start Button (right-side)*/
+#startGame {
+	background-color: #fff;
+	border: 5px solid#1589b0;
+	color:#a3cf1d;
+	font-size: 36px;
+	height: 100px;
+	margin-top: 125px;
+	width: 350px;
 }
 
+/*Display Trivia Questions & Answer Options (right-side)*/
 #displayQuestion, #displayOptions {
 	color: white;
 	font-size: 36px;
-	}
-
-#result {
-	color: blue;
-	font-size: 24px;
-	margin-top: 50px;
+	margin-top: 25px;
+}
+	
+/*Answer Options BUTTONS (right-side)*/
+.answer {
+	background-color: #fff;
+	border: 5px solid#1589b0;
+	color:#a3cf1d;
+	font-size: 32px;
+	height: 80px;
+	margin: 10px;
+	width: 350px;
 }
 
+/*Scoreboard (right-side)*/
 #finalScore {
 	color: white;
 	font-size: 48px;
-}
-
-.answer {
-	background-color: #fff;
-	border: 5px solid blue;
-	color: blue;
-	font-size: 18px;
-	height: 100px;
-	margin: 5px;
-	width: 200px;
-}
-
-#startGame {
-	background-color: #fff;
-	border: 5px solid blue;
-	color: blue;
-	font-size: 18px;
-	height: 100px;
-	margin: 5px;
-	width: 500px;
 }

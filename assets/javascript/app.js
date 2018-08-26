@@ -1,9 +1,9 @@
+//GlLOBAL VARIABLES//
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 var choiceMade = true;
 var count = 0;
-var start;
 var intervalId;
 var timeRemaining = 15
 var timeRunning = false;
@@ -69,7 +69,9 @@ var trivia = [
 		image: "hat.jpg",
 	},
 ];
+//FUNCTIONS//
 
+//New Game Screen//
 function startScreen() {
 	$("#mainImage").attr("src", "assets/images/pondering.jpg");
 	$("#timer").text("00:00");
@@ -83,12 +85,8 @@ function startScreen() {
 	incorrect = 0;
 	unanswered = 0;
 }
-function timerStart() {
-	if (!timeRunning) {
-		intervalId = setInterval(timerTicks, 1000);
-		timeRunning = true;
-	}
-}
+
+//Timer: Display Options in DOM//
 function timerTicks() {
 	timeRemaining--;
 	if (timeRemaining >= 10) {
@@ -98,15 +96,25 @@ function timerTicks() {
 	} if (timeRemaining === 0) {
 		// clearInterval(intervalId);
 		$("#timer").text("00:00")
-		// timeRemaining = 15;
 	} else { }
 }
+
+//Timer: Start Countdown//
+function timerStart() {
+	if (!timeRunning) {
+		intervalId = setInterval(timerTicks, 1000);
+		timeRunning = true;
+	}
+}
+
+//Hide Start Button, Show First Question, and Next Question in 15 sec//
 function startTriva() {
 	$("#startGame").hide();
 	showQuestion();
 	setTimeOut(nextQuestion, 1000 * 15);
 }
 
+//Display Question, Create Answer Buttons, & Start Timer//
 function showQuestion() {
 	$("#displayQuestion").text(trivia[count].question);
 	$("#mainImage").attr("src", "assets/images/" + trivia[count].image + "");
@@ -120,60 +128,76 @@ function showQuestion() {
 	timerStart();
 }
 
+//Move to Next Question//
 function nextQuestion() {
+	//Count = Trivia Array Index//
 	count++;
 	console.log(count);
+	//Reset Time to 16 since showQuestion starts after 1 sec//
 	timeRemaining = 16;
+	//Reset Display in DOM//
 	$("#mainImage").attr("src", "assets/images/pondering.jpg");
 	$("#displayQuestion").empty();
 	$("#displayOptions").empty();
 	$("#result").empty();
+	//Restart Countdown//
 	timerStart();
 	setTimeout(showQuestion, 1000);
+	//Once All Questions Displayed - Stop Game//
 	if (count === trivia.length) {
 		stop();
 	}
 }
 
-function stop() {
-	clearInterval(intervalId);
-	clearInterval(start);
-	unanswered = (trivia.length - correct - incorrect);
-	$("#finalScore").html("<br><br> FINAL SCORE: <br>" + "Correct: " + correct + "<br>" + "Incorrect: " + incorrect + "<br>" + "Unanswered: " + unanswered);
-	setTimeout(startScreen, 1000 * 3);
-}
-
+//Clicking an Answer Button Calls SelectAnswer Function//
 $("body").on("click", ".answer", selectAnswer);
 
 function selectAnswer() {
 	console.log("I've been clicked");
+	//Assign Data from Selected Button to answer variable//
 	var answer = ($(this).data("optionsindex"));
 	console.log(answer);
+	//Check for Correct Answer, Update Final Score,and Move to Next Question//
 	if (answer === trivia[count].answer) {
 		correct++;
 		choiceMade = true;
 		console.log("Number Correct: " + correct);
 		$("#mainImage").attr("src", "assets/images/checkMark.jpg");
-		$("#result").text("CORRECT! The answer is " + trivia[count].answer);
+		$("#displayOptions").empty();
+		$("#result").html("CORRECT!<br>The answer is " + trivia[count].answer);
 		setTimeout(nextQuestion, 1000 * 3);
-
+		
 	} else if (answer !== trivia[count.answer]) {
 		incorrect++;
 		choiceMade = true;
 		console.log("Number Incorrect: " + incorrect);
 		$("#mainImage").attr("src", "assets/images/xMark.jpg");
-		$("#result").text("INCORRECT! The answer is " + trivia[count].answer);
+		$("#displayOptions").empty();
+		$("#result").html("INCORRECT!<br> The answer is " + trivia[count].answer);
 		setTimeout(nextQuestion, 1000 * 3);
-
+		
 	}
+
+	//If No Answer Selected, Count as Unanswered, Move to Next Question//
+	//THIS IS CURRENTLY NOT WORKING AS HOPED!!//
 	else {
 		unanswered++;
 		choiceMade = false;
-		$("result").text("Time's up! The correct answer is " + trivia[count].answer);
+		$("#displayOptions").empty();
+		$("result").text
+		("Time's up! The correct answer is " + trivia[count].answer);
 	}
 }
 
+//Once All Questions Displayed, Clear Timer and Show Final Scores//
+function stop() {
+	clearInterval(intervalId);
+	unanswered = (trivia.length - correct - incorrect);
+	$("#finalScore").html("FINAL SCORE: <br>" + "Correct: " + correct + "<br>" + "Incorrect: " + incorrect + "<br>" + "Unanswered: " + unanswered);
+	setTimeout(startScreen, 1000 * 3);
+}
 
+//CALL FUNCTIONS TO RUN GAME
 startScreen();
 selectAnswer();
 $("#startGame").click(startTriva);
