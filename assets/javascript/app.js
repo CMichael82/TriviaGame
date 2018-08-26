@@ -12,63 +12,74 @@ var trivia = [
 		question: "What color are aircraft black boxes?",
 		options: ["Blue", "Yellow", "Orange"],
 		answer: "Orange",
+		image: "airplane.jpg",
 	},
 	{
 		question: "In which state was Tennessee Williams born?",
 		options: ["Kentucky", "Mississippi", "West Virginia"],
 		answer: "Mississippi",
+		image: "williams.jpg",
 	},
 	{
 		question: "How long is New Zealands Ninety Nine Mile Beach?",
 		options: ["99 miles", "55 miles", "111 miles"],
 		answer: "55 miles",
+		image: "beach.jpg",
 	},
 	{
 		question: "What is the main ingredient in Bombay Duck?",
 		options: ["Fish", "Steak", "Pork"],
 		answer: "Fish",
+		image: "bombay.jpg",
 	},
 	{
 		question: "What kind of animal is a prairie dog?",
 		options: ["Rodent", "Marsupial", "Leporid"],
 		answer: "Rodent",
+		image: "prairieDog.jpg",
 	},
 	{
-			question: "Where did the Spanish flu originate?",
-			options: ["Peru", "Italy", "USA"],
-			answer: "USA",
-		},
-		{
-			question: "In which country was the Caesar salad invented?",
-			options: ["Spain", "Egypt", "Mexico"],
-			answer: "Mexico",
-		},
-		{
-			question: "What nationality was Cleopatra, Queen of Eqypt?",
-			options: ["Nigeria", "Greek", "Libyan"],
-			answer: "Greek",
-		},
-		{
-			question: "How long did the 100 years war last?",
-			options: ["88 years", "116 years", "107 years"],
-			answer: "116 years",
-		},
-		{
-			question: "In which country are Panama hats made?",
-			options: ["Ecuador", "Portugal", "Brazil"],
-			answer: "Ecuador",
+		question: "Where did the Spanish flu originate?",
+		options: ["Peru", "Italy", "USA"],
+		answer: "USA",
+		image: "flu.jpg",
+	},
+	{
+		question: "In which country was the Caesar salad invented?",
+		options: ["Spain", "Egypt", "Mexico"],
+		answer: "Mexico",
+		image: "salad.jpg",
+	},
+	{
+		question: "What nationality was Cleopatra, Queen of Eqypt?",
+		options: ["Nigeria", "Greek", "Libyan"],
+		answer: "Greek",
+		image: "cleopatra.jpg",
+	},
+	{
+		question: "How long did the 100 years war last?",
+		options: ["88 years", "116 years", "107 years"],
+		answer: "77 years",
+		image: "yearsWar.jpg",
+	},
+	{
+		question: "In which country are Panama hats made?",
+		options: ["Ecuador", "Portugal", "Brazil"],
+		answer: "Ecuador",
+		image: "hat.jpg",
 	},
 ];
 
 function startScreen() {
+	$("#mainImage").attr("src", "assets/images/pondering.jpg");
 	$("#timer").text("00:00");
 	$("#displayQuestion").empty();
 	$("#displayOptions").empty();
 	$("#result").empty();
 	$("#finalScore").empty();
 	$("#startGame").show();
-	count=0;
-	correct =0;
+	count = 0;
+	correct = 0;
 	incorrect = 0;
 	unanswered = 0;
 }
@@ -93,11 +104,12 @@ function timerTicks() {
 function startTriva() {
 	$("#startGame").hide();
 	showQuestion();
-	setTimeOut(nextQuestion, 1000*15);
+	setTimeOut(nextQuestion, 1000 * 15);
 }
 
 function showQuestion() {
 	$("#displayQuestion").text(trivia[count].question);
+	$("#mainImage").attr("src", "assets/images/" + trivia[count].image + "");
 	for (var i = 0; i < 3; i++) {
 		var optionBtn = $("<button>");
 		optionBtn.addClass("button answer");
@@ -112,6 +124,7 @@ function nextQuestion() {
 	count++;
 	console.log(count);
 	timeRemaining = 16;
+	$("#mainImage").attr("src", "assets/images/pondering.jpg");
 	$("#displayQuestion").empty();
 	$("#displayOptions").empty();
 	$("#result").empty();
@@ -127,7 +140,7 @@ function stop() {
 	clearInterval(start);
 	unanswered = (trivia.length - correct - incorrect);
 	$("#finalScore").html("<br><br> FINAL SCORE: <br>" + "Correct: " + correct + "<br>" + "Incorrect: " + incorrect + "<br>" + "Unanswered: " + unanswered);
-	setTimeout(startScreen,1000*2);
+	setTimeout(startScreen, 1000 * 3);
 }
 
 $("body").on("click", ".answer", selectAnswer);
@@ -140,15 +153,17 @@ function selectAnswer() {
 		correct++;
 		choiceMade = true;
 		console.log("Number Correct: " + correct);
+		$("#mainImage").attr("src", "assets/images/checkMark.jpg");
 		$("#result").text("Correct! The answer is: " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000*2);
+		setTimeout(nextQuestion, 1000 * 3);
 
 	} else if (answer !== trivia[count.answer]) {
 		incorrect++;
 		choiceMade = true;
 		console.log("Number Incorrect: " + incorrect);
+		$("#mainImage").attr("src", "assets/images/xMark.jpg");
 		$("#result").text("Incorrect! The answer is: " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000*2);
+		setTimeout(nextQuestion, 1000 * 3);
 
 	}
 	else {
@@ -157,6 +172,7 @@ function selectAnswer() {
 		$("result").text("Time's up! The correct answer is: " + trivia[count].answer);
 	}
 }
+
 
 startScreen();
 selectAnswer();
