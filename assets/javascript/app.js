@@ -22,7 +22,7 @@ var trivia = [
 	},
 	{
 		question: "How long is New Zealands Ninety Nine Mile Beach?",
-		options: ["99 miles", "55 miles", "111 miles"],
+		options: ["77 miles", "55 miles", "111 miles"],
 		answer: "55 miles",
 		image: "beach.jpg",
 	},
@@ -52,14 +52,14 @@ var trivia = [
 	},
 	{
 		question: "What nationality was Cleopatra, Queen of Eqypt?",
-		options: ["Nigeria", "Greek", "Libyan"],
+		options: ["Nigerian", "Greek", "Libyan"],
 		answer: "Greek",
 		image: "cleopatra.jpg",
 	},
 	{
 		question: "How long did the 100 years war last?",
 		options: ["88 years", "116 years", "107 years"],
-		answer: "77 years",
+		answer: "116 years",
 		image: "yearsWar.jpg",
 	},
 	{
@@ -154,7 +154,7 @@ function selectAnswer() {
 		choiceMade = true;
 		console.log("Number Correct: " + correct);
 		$("#mainImage").attr("src", "assets/images/checkMark.jpg");
-		$("#result").text("Correct! The answer is: " + trivia[count].answer);
+		$("#result").text("CORRECT! The answer is " + trivia[count].answer);
 		setTimeout(nextQuestion, 1000 * 3);
 
 	} else if (answer !== trivia[count.answer]) {
@@ -162,14 +162,14 @@ function selectAnswer() {
 		choiceMade = true;
 		console.log("Number Incorrect: " + incorrect);
 		$("#mainImage").attr("src", "assets/images/xMark.jpg");
-		$("#result").text("Incorrect! The answer is: " + trivia[count].answer);
+		$("#result").text("INCORRECT! The answer is " + trivia[count].answer);
 		setTimeout(nextQuestion, 1000 * 3);
 
 	}
 	else {
 		unanswered++;
 		choiceMade = false;
-		$("result").text("Time's up! The correct answer is: " + trivia[count].answer);
+		$("result").text("Time's up! The correct answer is " + trivia[count].answer);
 	}
 }
 
