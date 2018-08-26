@@ -93,7 +93,7 @@ function timerTicks() {
 function startTriva() {
 	$("#startGame").hide();
 	showQuestion();
-	nextQuestion();
+	setTimeOut(nextQuestion, 1000*15);
 }
 
 function showQuestion() {
@@ -125,7 +125,7 @@ function nextQuestion() {
 function stop() {
 	clearInterval(intervalId);
 	clearInterval(start);
-	unanswered = (trivia.length - 1 - correct - incorrect);
+	unanswered = (trivia.length - correct - incorrect);
 	$("#finalScore").html("<br><br> FINAL SCORE: <br>" + "Correct: " + correct + "<br>" + "Incorrect: " + incorrect + "<br>" + "Unanswered: " + unanswered);
 	setTimeout(startScreen,1000*2);
 }
