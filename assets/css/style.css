@@ -24,9 +24,10 @@
 	width: 300px;
 }
 
-h1 {
+#title {
 	font-size: 58px;
 	text-align: center;
+	color: blue;
 }
 
 
@@ -34,49 +35,41 @@ h1 {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	}
-
-#displayQuestion {
 	background-color:yellowgreen;
 	border: 5px solid blue;
 	box-sizing: border-box;
-	color: white;
-	font-size: 24px;
-	height: 150px;
-	margin: 20px;
-	padding: 30px;
 	text-align: center;
-	width: 700px;
-	}
-
-#displayAnswer {
-	background-color: gray;
-	border: 5px solid blue;
-	color: white;
-	font-size: 24px;
-	height: 150px;
-	margin: 20px;
-	text-align: center;
+	height: 600px;
+	margin-top: 50px;
 	width: 700px;
 }
 
-button {
+#displayQuestion, #displayOptions, #result {
+	color: white;
+	font-size: 24px;
+	}
+
+	#finalScore {
+		color: white;
+		font-size: 48px;
+		}
+
+.answer {
 	background-color: #fff;
 	border: 5px solid blue;
 	color: blue;
-	font-size: 24px;
-	height: 125px;
-	margin: 10px;
-	width: 125px;
+	font-size: 18px;
+	height: 100px;
+	margin: 5px;
+	width: 200px;
 }
 
-#result {
-	background-color:yellowgreen;
+#startGame {
+	background-color: #fff;
 	border: 5px solid blue;
-	color: white;
-	font-size: 24px;
+	color: blue;
+	font-size: 18px;
 	height: 100px;
-	margin: 20px;
-	text-align: center;
-	width: 700px;
+	margin: 5px;
+	width: 500px;
 }

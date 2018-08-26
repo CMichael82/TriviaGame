@@ -1,129 +1,167 @@
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
+var choiceMade = true;
 var count = 0;
 var start;
-var timerRunning = false;
-var intervalID;
+var intervalId;
+var timeRemaining = 15
+var timeRunning = false;
 var trivia = [
 	{
 		question: "What color are aircraft black boxes?",
-		options: "a) Blue\n b) Yellow\n c) Orange",
-		answer: "c"
+		options: ["Blue", "Yellow", "Orange"],
+		answer: "Orange",
 	},
-
 	{
 		question: "In which state was Tennessee Williams born?",
-		options: "a) Kentucky\n b) Mississippi\n c) West Virginia",
-		answer: "b"
+		options: ["Kentucky", "Mississippi", "West Virginia"],
+		answer: "Mississippi",
 	},
-
 	{
 		question: "How long is New Zealands Ninety Nine Mile Beach?",
-		options: "a) 99 miles\n b) 55 miles\n c) 111 miles",
-		answer: "b"
+		options: ["99 miles", "55 miles", "111 miles"],
+		answer: "55 miles",
 	},
-
 	{
 		question: "What is the main ingredient in Bombay Duck?",
-		options: "a) Fish\n b) Steak\n c) Pork",
-		answer: "a"
+		options: ["Fish", "Steak", "Pork"],
+		answer: "Fish",
 	},
-
 	{
 		question: "What kind of animal is a prairie dog?",
-		options: "a) Rodent\n b) Marsupial\n c) Leporid",
-		answer: "a"
+		options: ["Rodent", "Marsupial", "Leporid"],
+		answer: "Rodent",
 	},
-
 	{
-		question: "Where did the Spanish flu originate?",
-		options: "a) Peru\n b) Italy\n c) USA",
-		answer: "c"
-	},
-
-	{
-		question: "In which country was the Caesar salad invented?",
-		options: "a)Spain\n b) Egypt\n c) Mexico",
-		answer: "c"
-	},
-
-	{
-		question: "What nationality was Cleopatra, Queen of Eqypt?",
-		options: "a) Nigeria\n b) Greek\n c) Libyan",
-		answer: "b"
-	},
-
-	{
-		question: "How long did the 100 years war last?",
-		options: "a) 88 years\n b) 116 years\n c) 107 years",
-		answer: "b"
-	},
-
-	{
-		question: "In which country are Panama hats made?",
-		options: "a) Ecuador\n b) Portugal\n c) Brazil",
-		answer: "a"
+		// 	question: "Where did the Spanish flu originate?",
+		// 	options: ["Peru", "Italy", "USA"],
+		// 	answer: 2,
+		// },
+		// {
+		// 	question: "In which country was the Caesar salad invented?",
+		// 	options: ["Spain", "Egypt", "Mexico"],
+		// 	answer: 2,
+		// },
+		// {
+		// 	question: "What nationality was Cleopatra, Queen of Eqypt?",
+		// 	options: ["Nigeria", "Greek", "Libyan"],
+		// 	answer: 1,
+		// },
+		// {
+		// 	question: "How long did the 100 years war last?",
+		// 	options: ["88 years", "116 years", "107 years"],
+		// 	answer: 1,
+		// },
+		// {
+		// 	question: "In which country are Panama hats made?",
+		// 	options: ["Ecuador", "Portugal", "Brazil"],
+		// 	answer: 0,
 	},
 ];
 
-var timer = {
-	time: 0,
-	reset: function(){
-		timer.time = 0;
-		$("#timer").text("00:00")
-	},
+function startScreen() {
+	$("#timer").text("00:00");
+	$("#displayQuestion").empty();
+	$("#displayOptions").empty();
+	$("#result").empty();
+	$("#finalScore").empty();
+	$("#startGame").show();
+	count=0;
+	correct =0;
+	incorrect = 0;
+	unanswered = 0;
 }
-// var timeRemaining= 15;
-// var showTime= setInterval(function(){
-//     timeRemaining--;
-//     $("#timer").text("00:"+ timeRemaining);
-//     if(timeRemaining <= 0)
-//         clearInterval(showTime);
-//     },1000);
-
-timer.reset();
-showQuestion();
-selectAnswer();
-$("#mainImage").click(startTriva);
-
+function timerStart() {
+	if (!timeRunning) {
+		intervalId = setInterval(timerTicks, 1000);
+		timeRunning = true;
+	}
+}
+function timerTicks() {
+	timeRemaining--;
+	if (timeRemaining >= 10) {
+		$("#timer").text("00:" + timeRemaining);
+	} if (timeRemaining < 10) {
+		$("#timer").text("00:0" + timeRemaining);
+	} if (timeRemaining === 0) {
+		// clearInterval(intervalId);
+		$("#timer").text("00:00")
+		timeRemaining = 15;
+	} else { }
+}
 function startTriva() {
-	start = setInterval(nextQuestion, 1000 * 5)
+	$("#startGame").hide();
+	showQuestion();
+	start = setInterval(nextQuestion, 1000 * 15);
 }
 
 function showQuestion() {
-	$("#displayQuestion").html(trivia[count].question + "<br><br>" + trivia[count].options);
+	$("#displayQuestion").text(trivia[count].question);
+	for (var i = 0; i < 3; i++) {
+		var optionBtn = $("<button>");
+		optionBtn.addClass("button answer");
+		optionBtn.attr("data-optionsindex", trivia[count].options[i]);
+		optionBtn.text(trivia[count].options[i]);
+		$("#displayOptions").append(optionBtn);
+	}
+	timerStart();
 }
 
 function nextQuestion() {
 	count++;
-	$("displayQuestion").empty();
+	console.log(count);
+	timeRemaining = 16;
+	$("#displayQuestion").empty();
+	$("#displayOptions").empty();
+	$("#result").empty();
+	timerStart();
 	setTimeout(showQuestion, 1000);
-	if (count === trivia.length) {
+	if (count === trivia.length - 1) {
 		stop();
 	}
 }
 
-function selectAnswer() {
-	$("#answerA").click(function () {
-		if (this.id === "answerA") {
-			console.log("A chosen");
-		};
-	});
-		$("#answerB").click(function () {
-		if (this.id === "answerB") {
-			console.log("B chosen");
-		};
-	});
-		$("#answerC").click(function () {
-			if (this.id === "answerC") {
-				console.log("C chosen");
-	};
-});
-}
-
-
-
 function stop() {
+	clearInterval(intervalId);
 	clearInterval(start);
+	unanswered = (trivia.length - 1 - correct - incorrect);
+	$("#finalScore").html("<br><br> FINAL SCORE: <br>" + "Correct: " + correct + "<br>" + "Incorrect: " + incorrect + "<br>" + "Unanswered: " + unanswered);
+	setTimeout(startScreen,1000*2);
 }
+
+$("body").on("click", ".answer", selectAnswer);
+
+function selectAnswer() {
+	console.log("I've been clicked");
+	var answer = ($(this).data("optionsindex"));
+	console.log(answer);
+	if (answer === trivia[count].answer) {
+		correct++;
+		choiceMade = true;
+		console.log("Number Correct: " + correct);
+		$("#result").text("Correct! The answer is: " + trivia[count].answer);
+		setTimeout(nextQuestion, 1000 * 2);
+
+	} else if (answer !== trivia[count.answer]) {
+		incorrect++;
+		choiceMade = true;
+		console.log("Number Incorrect: " + incorrect);
+		$("#result").text("Incorrect! The answer is: " + trivia[count].answer);
+		setTimeout(nextQuestion, 1000 * 2);
+
+	}
+	else {
+		unanswered++;
+		choiceMade = false;
+		$("result").text("Time's up! The correct answer is: " + trivia[count].answer);
+
+
+	}
+}
+
+
+
+startScreen();
+selectAnswer();
+$("#startGame").click(startTriva);

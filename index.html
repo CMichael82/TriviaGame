@@ -5,30 +5,33 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
 	<link rel="stylesheet" href="./assets/css/style.css">
 	<title>Trivia Game</title>
 </head>
 
 <body>
 	<div id="leftSide">
-	<img id="mainImage" src="./assets/images/pondering.jpg" alt="character pondering ?">
-	<div id="timer"></div>
+		<img id="mainImage" src="./assets/images/pondering.jpg" alt="character pondering ?">
+		<div id="timer"></div>
 	</div>
-	
 
-	<h1>Isn't it Obvious?</h1>
+
 	<div id="displayBlock">
-			<div id="displayQuestion"></div>
-			<div id="displayAnswer">
-				<button id="answerA" value="a">A</button>
-				<button id="answerB" value="b">B</button>
-				<button id="answerC" value="c">C</button>
-			</div>
-			<div id="result"></div>
-		</div>
-		<!-- JQuery -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="./assets/javascript/app.js"></script>
+		<h1 id="title">Isn't it Obvious?</h1>
+		<div id="displayQuestion"></div>
+		<div id="displayOptions"></div>
+		<div id="result"></div>
+		<div id="finalScore"></div>
+		<button id="startGame">Start Game</button>
+	</div>
+	<!-- JQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="./assets/javascript/app.js"></script>
 </body>
+
+<!-- <button class="answer" id="answerA" value="A">A</button>
+	<button class="answer" id="answerB" value="B">B</button>
+	<button class="answer" id="answerC" value="C">C</button> -->
 
 </html>
