@@ -34,29 +34,29 @@ var trivia = [
 		answer: "Rodent",
 	},
 	{
-		// 	question: "Where did the Spanish flu originate?",
-		// 	options: ["Peru", "Italy", "USA"],
-		// 	answer: 2,
-		// },
-		// {
-		// 	question: "In which country was the Caesar salad invented?",
-		// 	options: ["Spain", "Egypt", "Mexico"],
-		// 	answer: 2,
-		// },
-		// {
-		// 	question: "What nationality was Cleopatra, Queen of Eqypt?",
-		// 	options: ["Nigeria", "Greek", "Libyan"],
-		// 	answer: 1,
-		// },
-		// {
-		// 	question: "How long did the 100 years war last?",
-		// 	options: ["88 years", "116 years", "107 years"],
-		// 	answer: 1,
-		// },
-		// {
-		// 	question: "In which country are Panama hats made?",
-		// 	options: ["Ecuador", "Portugal", "Brazil"],
-		// 	answer: 0,
+			question: "Where did the Spanish flu originate?",
+			options: ["Peru", "Italy", "USA"],
+			answer: "USA",
+		},
+		{
+			question: "In which country was the Caesar salad invented?",
+			options: ["Spain", "Egypt", "Mexico"],
+			answer: "Mexico",
+		},
+		{
+			question: "What nationality was Cleopatra, Queen of Eqypt?",
+			options: ["Nigeria", "Greek", "Libyan"],
+			answer: "Greek",
+		},
+		{
+			question: "How long did the 100 years war last?",
+			options: ["88 years", "116 years", "107 years"],
+			answer: "116 years",
+		},
+		{
+			question: "In which country are Panama hats made?",
+			options: ["Ecuador", "Portugal", "Brazil"],
+			answer: "Ecuador",
 	},
 ];
 
@@ -87,13 +87,13 @@ function timerTicks() {
 	} if (timeRemaining === 0) {
 		// clearInterval(intervalId);
 		$("#timer").text("00:00")
-		timeRemaining = 15;
+		// timeRemaining = 15;
 	} else { }
 }
 function startTriva() {
 	$("#startGame").hide();
 	showQuestion();
-	start = setInterval(nextQuestion, 1000 * 15);
+	nextQuestion();
 }
 
 function showQuestion() {
@@ -117,7 +117,7 @@ function nextQuestion() {
 	$("#result").empty();
 	timerStart();
 	setTimeout(showQuestion, 1000);
-	if (count === trivia.length - 1) {
+	if (count === trivia.length) {
 		stop();
 	}
 }
@@ -141,26 +141,22 @@ function selectAnswer() {
 		choiceMade = true;
 		console.log("Number Correct: " + correct);
 		$("#result").text("Correct! The answer is: " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000 * 2);
+		setTimeout(nextQuestion, 1000*2);
 
 	} else if (answer !== trivia[count.answer]) {
 		incorrect++;
 		choiceMade = true;
 		console.log("Number Incorrect: " + incorrect);
 		$("#result").text("Incorrect! The answer is: " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000 * 2);
+		setTimeout(nextQuestion, 1000*2);
 
 	}
 	else {
 		unanswered++;
 		choiceMade = false;
 		$("result").text("Time's up! The correct answer is: " + trivia[count].answer);
-
-
 	}
 }
-
-
 
 startScreen();
 selectAnswer();
