@@ -89,22 +89,29 @@ function startScreen() {
 //Timer: Display Options in DOM//
 function timerTicks() {
 	timeRemaining--;
+	console.log(timeRemaining);
 	if (timeRemaining >= 10) {
 		$("#timer").text("00:" + timeRemaining);
 	} if (timeRemaining < 10) {
 		$("#timer").text("00:0" + timeRemaining);
-	} if (timeRemaining === 0) {
-		// clearInterval(intervalId);
+	} if (timeRemaining <= 0) {
+		clearInterval(intervalId);
 		$("#timer").text("00:00")
+		unanswered++;
+		choiceMade = false;
+		$("#displayOptions").empty();
+		$("#result").text("Time's up! The correct answer is " + trivia[count].answer);
+		setTimeout(nextQuestion,1000*3);
 	} else { }
 }
 
 //Timer: Start Countdown//
 function timerStart() {
-	if (!timeRunning) {
+	// console.log('TR: ', timeRunning);
+	// if (!timeRunning) {
 		intervalId = setInterval(timerTicks, 1000);
-		timeRunning = true;
-	}
+	// 	timeRunning = true;
+	// }
 }
 
 //Hide Start Button, Show First Question, and Next Question in 15 sec//
@@ -125,6 +132,7 @@ function showQuestion() {
 		optionBtn.text(trivia[count].options[i]);
 		$("#displayOptions").append(optionBtn);
 	}
+	clearInterval(intervalId);
 	timerStart();
 }
 
@@ -141,7 +149,7 @@ function nextQuestion() {
 	$("#displayOptions").empty();
 	$("#result").empty();
 	//Restart Countdown//
-	timerStart();
+	// timerStart();
 	setTimeout(showQuestion, 1000);
 	//Once All Questions Displayed - Stop Game//
 	if (count === trivia.length) {
