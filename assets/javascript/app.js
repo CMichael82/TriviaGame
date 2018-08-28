@@ -6,7 +6,6 @@ var choiceMade = true;
 var count = 0;
 var intervalId;
 var timeRemaining = 15
-var timeRunning = false;
 var trivia = [
 	{
 		question: "What color are aircraft black boxes?",
@@ -86,7 +85,7 @@ function startScreen() {
 	unanswered = 0;
 }
 
-//Timer: Display Options in DOM//
+//Timer: Display in DOM//
 function timerTicks() {
 	timeRemaining--;
 	console.log(timeRemaining);
@@ -97,34 +96,33 @@ function timerTicks() {
 	} if (timeRemaining <= 0) {
 		clearInterval(intervalId);
 		$("#timer").text("00:00")
+		//If Time's Up, Mark as Unanswered, Display Answer, and Move to Next Question//
 		unanswered++;
+		console.log("# Unanswered: " + unanswered);
 		choiceMade = false;
 		$("#displayOptions").empty();
-		$("#result").text("Time's up! The correct answer is " + trivia[count].answer);
-		setTimeout(nextQuestion,1000*3);
+		$("#result").html("Time's up!<br>The correct answer is " + trivia[count].answer);
+		setTimeout(nextQuestion, 1000 * 2);
 	} else { }
 }
 
 //Timer: Start Countdown//
 function timerStart() {
-	// console.log('TR: ', timeRunning);
-	// if (!timeRunning) {
-		intervalId = setInterval(timerTicks, 1000);
-	// 	timeRunning = true;
-	// }
+	intervalId = setInterval(timerTicks, 1000);
 }
 
-//Hide Start Button, Show First Question, and Next Question in 15 sec//
+//Hide Start Button and Show First Question//
 function startTriva() {
 	$("#startGame").hide();
 	showQuestion();
-	setTimeOut(nextQuestion, 1000 * 15);
 }
 
-//Display Question, Create Answer Buttons, & Start Timer//
+//Display Question//
 function showQuestion() {
+	$("#timer").text("00:00")
 	$("#displayQuestion").text(trivia[count].question);
 	$("#mainImage").attr("src", "assets/images/" + trivia[count].image + "");
+	//Create Answer Buttons//
 	for (var i = 0; i < 3; i++) {
 		var optionBtn = $("<button>");
 		optionBtn.addClass("button answer");
@@ -132,24 +130,21 @@ function showQuestion() {
 		optionBtn.text(trivia[count].options[i]);
 		$("#displayOptions").append(optionBtn);
 	}
+	//Reset Countdown//
 	clearInterval(intervalId);
+	$("#timer").text("00:15");
+	timeRemaining = 15;
 	timerStart();
 }
 
-//Move to Next Question//
+//Move to New Question//
 function nextQuestion() {
-	//Count = Trivia Array Index//
+	//Count = Trivia Array Index - Increase Moves to Next Question//
 	count++;
-	console.log(count);
-	//Reset Time to 16 since showQuestion starts after 1 sec//
-	timeRemaining = 16;
 	//Reset Display in DOM//
-	$("#mainImage").attr("src", "assets/images/pondering.jpg");
 	$("#displayQuestion").empty();
 	$("#displayOptions").empty();
 	$("#result").empty();
-	//Restart Countdown//
-	// timerStart();
 	setTimeout(showQuestion, 1000);
 	//Once All Questions Displayed - Stop Game//
 	if (count === trivia.length) {
@@ -157,43 +152,38 @@ function nextQuestion() {
 	}
 }
 
-//Clicking an Answer Button Calls SelectAnswer Function//
-$("body").on("click", ".answer", selectAnswer);
-
+//Determining Correct Answer//
 function selectAnswer() {
-	console.log("I've been clicked");
 	//Assign Data from Selected Button to answer variable//
 	var answer = ($(this).data("optionsindex"));
-	console.log(answer);
+	console.log("Question #: " + count);
+	console.log("Answer Selected " + answer);
+
 	//Check for Correct Answer, Update Final Score,and Move to Next Question//
 	if (answer === trivia[count].answer) {
-		correct++;
 		choiceMade = true;
-		console.log("Number Correct: " + correct);
+		clearInterval(intervalId);
+		correct++;
+		console.log("# Correct: " + correct);
+		$("#timer").text("00:00")
 		$("#mainImage").attr("src", "assets/images/checkMark.jpg");
 		$("#displayOptions").empty();
 		$("#result").html("CORRECT!<br>The answer is " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000 * 3);
-		
+		setTimeout(nextQuestion, 1000 * 2);
+
 	} else if (answer !== trivia[count.answer]) {
-		incorrect++;
 		choiceMade = true;
-		console.log("Number Incorrect: " + incorrect);
+		clearInterval(intervalId);
+		incorrect++;
+		console.log("# Incorrect: " + incorrect);
+		$("#timer").text("00:00")
 		$("#mainImage").attr("src", "assets/images/xMark.jpg");
 		$("#displayOptions").empty();
 		$("#result").html("INCORRECT!<br> The answer is " + trivia[count].answer);
-		setTimeout(nextQuestion, 1000 * 3);
-		
-	}
+		setTimeout(nextQuestion, 1000 * 2);
 
-	//If No Answer Selected, Count as Unanswered, Move to Next Question//
-	//THIS IS CURRENTLY NOT WORKING AS HOPED!!//
+	}
 	else {
-		unanswered++;
-		choiceMade = false;
-		$("#displayOptions").empty();
-		$("result").text
-		("Time's up! The correct answer is " + trivia[count].answer);
 	}
 }
 
@@ -207,5 +197,8 @@ function stop() {
 
 //CALL FUNCTIONS TO RUN GAME
 startScreen();
-selectAnswer();
+//Clicking on Start Game Button Calls startTriva Function
 $("#startGame").click(startTriva);
+//Clicking an Answer Button Calls SelectAnswer Function//
+selectAnswer();
+$("body").on("click", ".answer", selectAnswer);

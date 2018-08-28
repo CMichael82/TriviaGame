@@ -8,18 +8,11 @@ Build a timed trivia game that displays a question every 15 seconds. The user se
 ### Technologies Used:
 HTML, Bootstrap, CSS, JavaScript, and JQuery
 
-### Screenshots:
-Game Start
-![] (assets/images/StartGame.jpg)
-
-Example Question
-![] (assets/images/ExampleQUestion.jpg)
-
-Scoreboard
-![] (assets/images/Scoreboard.jpg)
-
 ### Built Using:
 Visual Code
+
+### Acknowledgements:
+Trivia questions located on laffgaff.com	
 
 ### Authors:
 Carolyn Michael 

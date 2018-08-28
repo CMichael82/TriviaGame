@@ -18,7 +18,7 @@ body{
 /*Game Content Container*/
 #displayBlock {
 	background-color: #1589b0;
-	border: 5px solid #a3cf1d;
+	border: 10px solid #a3cf1d;
 	box-sizing: border-box;
 	height: 550px;
 	justify-items: center;
@@ -49,7 +49,7 @@ body{
 /*Correct or Incorrect Answer Field (right-side)*/
 #result {
 	color: white;
-	font-size: 28px;
+	font-size: 36px;
 	margin-top: 75px;
 }
 
