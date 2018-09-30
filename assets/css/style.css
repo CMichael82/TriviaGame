@@ -23,7 +23,7 @@ body{
 	height: 550px;
 	justify-items: center;
 	text-align: center;
-	margin: 50px auto;
+	margin:0 auto;
 }
 
 /*various jpg images (left-side)*/
@@ -40,10 +40,9 @@ body{
 	color: #1589b0;
 	font-size: 36px;
 	height: 75px;
-	margin-left: 75px;
 	padding-bottom:10px;
-	text-align: center;
-	width: 300px;
+	width: 250px;
+	margin: 0 auto;
 }
 
 /*Correct or Incorrect Answer Field (right-side)*/
@@ -61,14 +60,13 @@ body{
 	font-size: 36px;
 	height: 100px;
 	margin-top: 125px;
-	width: 350px;
+	width: 300px;
 }
 
 /*Display Trivia Questions & Answer Options (right-side)*/
 #displayQuestion, #displayOptions {
 	color: white;
-	font-size: 36px;
-	margin-top: 25px;
+	font-size: 32px;
 }
 	
 /*Answer Options BUTTONS (right-side)*/
@@ -79,11 +77,27 @@ body{
 	font-size: 32px;
 	height: 80px;
 	margin: 10px;
-	width: 350px;
+	width: 250px;
 }
 
 /*Scoreboard (right-side)*/
 #finalScore {
 	color: white;
 	font-size: 48px;
+}
+
+/*Media Queries*/
+
+/* Width at 980px and below */
+@media screen and (max-width: 980px){
+	#displayBlock {
+		height: 700px;
+		}
+}
+
+/* Width at 768px and below */
+@media screen and (max-width: 768px){
+	#displayBlock {
+		height: 900px;
+		}
 }
